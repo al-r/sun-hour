@@ -37,7 +37,7 @@ function convertTo24(dataAmPm){
 var sunrise = convertTo24(data.astronomy.sunrise),
 	sunset = convertTo24(data.astronomy.sunset);
 
-function chronometer(){
+function clock(){
 	var hrs,
 		mins,
 		secs;
@@ -65,11 +65,12 @@ function chronometer(){
 		if(oldHrs != hrs){
 			sunPosition(hrs);
 			moonPosition(hrs);
-			console.log('change hrs');
+			nightSky(hrs);
 		}
 	}, 1000);
 };
 
+// Daytime
 function sunPosition(timeNow){
 	var dayDuration = sunset - sunrise;
 	var ratioHour = 180 / dayDuration;
@@ -87,6 +88,7 @@ function sunPosition(timeNow){
 	sunPath.style.transform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
 };
 
+// Night time
 function moonPosition(timeNow){
 	var nightDuration = 24 - sunset + sunrise;
 	var ratioHour = 180 / nightDuration;
@@ -109,6 +111,48 @@ function moonPosition(timeNow){
 	moonPath.style.transform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
 };
 
+function displayStars(){
+	var windowW = window.innerWidth,
+		windowH = window.innerHeight,
+		nbStars = 20,
+		spaceW = windowW / nbStars,
+		spaceH = windowH / nbStars;
+
+	for(var index=0; index < nbStars; index++){
+		var star = document.createElement("div");
+		var where = document.getElementById("sky");
+		where.appendChild(star);
+
+		var posLeft = Math.round(Math.random() * (spaceW * (index+1))),
+			posTop = Math.round(Math.random() * (spaceH * (index+1)));
+		star.style.left += posLeft + 'px';
+		star.style.top += posTop + 'px';
+
+		if(Math.random()<0.34){
+			star.className += 'star star-l';
+		} else if(Math.random()<0.67){
+			star.className += 'star star-m';
+		} else {
+			star.className += 'star star-s';
+		}
+	};
+};
+
+function nightSky(timeNow){
+	if(timeNow<=sunrise || timeNow>=sunset){
+		document.getElementsByTagName('body')[0].className += 'night';
+		displayStars();
+	} else {
+		document.getElementsByTagName('body')[0].classList.remove('night');
+		var stars = document.getElementsByClassName('star');
+		var nbStars = stars.length;
+
+		for(var i = 0; i < nbStars; i++){
+			stars[i].remove();
+		}
+	}
+};
+
 window.addEventListener('load', function(){
-	chronometer();
+	clock();
 });
