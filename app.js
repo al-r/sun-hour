@@ -139,16 +139,26 @@ function displayStars(){
 };
 
 function nightSky(timeNow){
+	var body = document.getElementsByTagName('body')[0];
 	if(timeNow<=sunrise || timeNow>=sunset){
-		document.getElementsByTagName('body')[0].className += 'night';
+		if(body.classList.contains('night')){
+
+		} else {
+			body.className += 'night';
+		}
+		
 		displayStars();
 	} else {
-		document.getElementsByTagName('body')[0].classList.remove('night');
-		var stars = document.getElementsByClassName('star');
-		var nbStars = stars.length;
+		if(body.classList.contains('night')){
+			document.getElementsByTagName('body')[0].classList.remove('night');
+			var stars = document.getElementsByClassName('star');
+			var nbStars = stars.length;
 
-		for(var i = 0; i < nbStars; i++){
-			stars[i].remove();
+			for(var i = 0; i < nbStars; i++){
+				stars[i].remove();
+			}
+		} else {
+
 		}
 	}
 };
