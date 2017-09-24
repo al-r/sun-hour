@@ -1,0 +1,105 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background-color: #00a0ab;
+	color: #fff;
+	font-family: 'Nunito', Helvetica, sans-serif;
+	font-size: 14px;
+}
+
+#sky {
+	background: -moz-radial-gradient(center bottom, ellipse cover,  rgba(0,160,171,0) 0%, rgba(0,160,171,0) 50%, rgba(0,32,34,1) 100%);
+	background: -webkit-radial-gradient(center bottom, ellipse cover,  rgba(0,160,171,0) 0%,rgba(0,160,171,0) 50%,rgba(0,32,34,1) 100%);
+	background: radial-gradient(ellipse at center bottom,  rgba(0,160,171,0) 0%,rgba(0,160,171,0) 50%,rgba(0,32,34,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000a0ab', endColorstr='#002022',GradientType=1 );
+	height: 100%;
+	position: fixed;
+	width: 100%;
+	z-index: 10;
+}
+
+.container {
+	height: 100%;
+	position: relative;
+	width: 100%;
+}
+
+#chronometer {
+	display: table;
+	margin: 20px auto;
+	position: relative;
+}
+
+#time {
+	display: block;
+	font-size: 28px;
+	text-align: center;
+}
+
+#city-name {
+	display: block;
+	font-size: 20px;
+	text-align: center;
+}
+
+#sun-path,
+#moon-path {
+	border: 1px dashed #fff;
+	position: fixed;
+	-webkit-transform: translate(-50%, -50%) rotate(-90deg);
+	-moz-transform: translate(-50%, -50%) rotate(-90deg);
+	transform: translate(-50%, -50%) rotate(-90deg);
+	top: 100%;
+	left: 50%;
+	z-index: 100;
+	-webkit-transition: transform 2s;
+	-moz-transition: transform 2s;
+	transition: transform 2s;
+}
+
+#sun-path {
+	border-radius: 800px;
+	height: 800px;
+	width: 800px;
+}
+
+#sun {
+	background-color: #ffce00;
+	border-radius: 70px;
+	display: table;
+	height: 70px;
+	margin: -35px auto 0;
+	width: 70px;
+}
+
+#moon-path {
+	border-radius: 600px;
+	height: 600px;
+	width: 600px;
+}
+
+#moon {
+	background-color: #fff;
+	border-radius: 50px;
+	display: table;
+	height: 50px;
+	margin: -25px auto 0;
+	width: 50px;
+}
+
+#earth {
+	background-color: #004044;
+	border-radius: 200px;
+	height: 200px;
+	position: fixed;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	top: 100%;
+	left: 50%;
+	width: 200px;
+	z-index: 100;
+}
