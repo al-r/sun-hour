@@ -27,12 +27,22 @@ body {
 	transition: background 2s;
 }
 
-.star {
+.night .star {
 	background-color: #fff;
 	border-radius: 20px;
 	opacity: 0.4;
 	position: fixed;
 	z-index: 50;
+	-webkit-transition: opacity 2s;
+	-moz-transition: opacity 2s;
+	transition: opacity 2s;
+}
+
+.star {
+	opacity: 0;
+	-webkit-transition: opacity 2s;
+	-moz-transition: opacity 2s;
+	transition: opacity 2s;
 }
 
 .star.star-l {
