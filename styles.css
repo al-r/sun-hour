@@ -4,17 +4,34 @@
 }
 
 body {
-	background-color: #00a0ab;
+	background-color: #32B3BB;
 	color: #fff;
 	font-family: 'Nunito', Helvetica, sans-serif;
 	font-size: 14px;
+	-webkit-transition: background-color 10s;
+	-moz-transition: background-color 10s;
+	transition: background-color 10s;
+}
+
+.twilight {
+	background-color: #f29271;
+	-webkit-transition: background-color 10s;
+	-moz-transition: background-color 10s;
+	transition: background-color 10s;
+}
+
+.twilight #sky {
+	background: -moz-radial-gradient(center bottom, ellipse cover,  rgba(242,146,113,0) 0%, rgba(255,119,176,0.39) 39%, rgba(117,0,87,0.74) 74%, rgba(0,32,34,1) 100%);
+	background: -webkit-radial-gradient(center bottom, ellipse cover,  rgba(242,146,113,0) 0%,rgba(255,119,176,0.39) 39%,rgba(117,0,87,0.74) 74%,rgba(0,32,34,1) 100%);
+	background: radial-gradient(ellipse at center bottom,  rgba(242,146,113,0) 0%,rgba(255,119,176,0.39) 39%,rgba(117,0,87,0.74) 74%,rgba(0,32,34,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00f29271', endColorstr='#002022',GradientType=1 );
 }
 
 .night {
 	background-color: #002022;
-	-webkit-transition: background-color 2s;
-	-moz-transition: background-color 2s;
-	transition: background-color 2s;
+	-webkit-transition: background-color 10s;
+	-moz-transition: background-color 10s;
+	transition: background-color 10s;
 }
 
 .night #sky {
@@ -22,9 +39,6 @@ body {
 	background: -webkit-radial-gradient(center bottom, ellipse cover,  rgba(0,160,171,0) 0%,rgba(0,160,171,0) 50%,rgba(0,0,0,1) 100%);
 	background: radial-gradient(ellipse at center bottom,  rgba(0,160,171,0) 0%,rgba(0,160,171,0) 50%,rgba(0,0,0,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000a0ab', endColorstr='#000000',GradientType=1 );
-	-webkit-transition: background 2s;
-	-moz-transition: background 2s;
-	transition: background 2s;
 }
 
 .night .star {
@@ -50,6 +64,7 @@ body {
 	box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.25);
 	height: 5px;
 	width: 5px;
+	-webkit-animation: shiningl 3s linear infinite alternate;
 	animation: shiningl 3s linear infinite alternate;
 }
 
@@ -58,6 +73,7 @@ body {
 	box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.25);
 	height: 3px;
 	width: 3px;
+	-webkit-animation: shiningm 2s linear infinite alternate;
 	animation: shiningm 2s linear infinite alternate;
 }
 
@@ -66,14 +82,15 @@ body {
 	box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.25);
 	height: 1px;
 	width: 1px;
+	-webkit-animation: shinings 1s linear infinite alternate;
 	animation: shinings 1s linear infinite alternate;
 }
 
 #sky {
-	background: -moz-radial-gradient(center bottom, ellipse cover,  rgba(0,160,171,0) 0%, rgba(0,32,34,1) 100%);
-	background: -webkit-radial-gradient(center bottom, ellipse cover,  rgba(0,160,171,0) 0%,rgba(0,32,34,1) 100%);
-	background: radial-gradient(ellipse at center bottom,  rgba(0,160,171,0) 0%,rgba(0,32,34,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0000a0ab', endColorstr='#002022',GradientType=1 );
+	background: -moz-radial-gradient(center bottom, ellipse cover,  rgba(50,179,187,0) 0%, rgba(0,56,60,1) 100%);
+	background: -webkit-radial-gradient(center bottom, ellipse cover,  rgba(50,179,187,0) 0%,rgba(0,56,60,1) 100%);
+	background: radial-gradient(ellipse at center bottom,  rgba(50,179,187,0) 0%,rgba(0,56,60,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0032b3bb', endColorstr='#00383c',GradientType=1 );
 	height: 100%;
 	position: fixed;
 	width: 100%;

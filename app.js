@@ -35,7 +35,14 @@ function convertTo24(dataAmPm){
 };
 
 var sunrise = convertTo24(data.astronomy.sunrise),
-	sunset = convertTo24(data.astronomy.sunset);
+	sunset = convertTo24(data.astronomy.sunset),
+	moonrise = sunset - 1,
+	moonset = sunrise + 1;
+
+console.log('sunrise', sunrise);
+console.log('moonset', moonset);
+console.log('sunset', sunset);
+console.log('moonrise', moonrise);
 
 function clock(){
 	var hrs,
@@ -77,7 +84,7 @@ function sunPosition(timeNow){
 
 	var position;
 
-	if(timeNow<=sunrise || timeNow>=sunset){
+	if(timeNow<sunrise || timeNow>sunset){
 		position = 180;
 	} else {
 		position = -90 + (timeNow - sunrise) * ratioHour;
@@ -90,13 +97,13 @@ function sunPosition(timeNow){
 
 // Night time
 function moonPosition(timeNow){
-	var nightDuration = 24 - sunset + sunrise;
+	var nightDuration = 24 - moonrise + moonset;
 	var ratioHour = 180 / nightDuration;
 
 	var position;
 	
-	if(timeNow<=sunrise || timeNow>=sunset){
-		var factor = timeNow - sunset;
+	if(timeNow<=moonset || timeNow>=moonrise){
+		var factor = timeNow - moonrise;
 		if(factor<0) {
 			position = -90 + (factor+24) * ratioHour;
 		} else {
@@ -140,15 +147,28 @@ function displayStars(){
 
 function nightSky(timeNow){
 	var body = document.getElementsByTagName('body')[0];
-	if(timeNow<=sunrise || timeNow>=sunset){
+
+	if(timeNow<sunrise || timeNow>sunset){
 		if(body.classList.contains('night')){
 
 		} else {
+			document.getElementsByTagName('body')[0].classList.remove('twilight');
 			body.className += 'night';
 		}
 		
 		displayStars();
+	} else if(timeNow<=moonset || timeNow>=moonrise){
+		if(body.classList.contains('twilight')){
+
+		} else {
+			document.getElementsByTagName('body')[0].classList.remove('night');
+			body.className += 'twilight';
+		}
 	} else {
+		if(body.classList.contains('twilight')){
+			document.getElementsByTagName('body')[0].classList.remove('twilight');
+		}
+
 		if(body.classList.contains('night')){
 			document.getElementsByTagName('body')[0].classList.remove('night');
 			var stars = document.getElementsByClassName('star');
@@ -157,8 +177,6 @@ function nightSky(timeNow){
 			for(var i = 0; i < nbStars; i++){
 				stars[i].remove();
 			}
-		} else {
-
 		}
 	}
 };
