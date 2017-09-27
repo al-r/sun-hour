@@ -348,10 +348,11 @@ div[class*="storm"] .drop2 {
 .foggy .cloud-bottom,
 .smoky .cloud-top,
 .smoky .cloud-bottom {
-	-webkit-filter: blur(10px);
-    filter: blur(10px);
+	-webkit-filter: blur(3px);
+	filter: blur(3px);
     width: 40px;
-	opacity: 0.6;
+    opacity: 0.95;
+    height: 10px;
 }
 
 div[class*="hail"] .cloud-top,
