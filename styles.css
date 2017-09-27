@@ -172,6 +172,9 @@ body {
 #moon {
 	background-color: #CAD058;
 	border-radius: 50px;
+	-webkit-box-shadow: 0 0 10px 10px rgba(202,208,88, 0.2);
+	-moz-box-shadow: 0 0 10px 10px rgba(202,208,88, 0.2);
+	box-shadow: 0 0 10px 10px rgba(202,208,88, 0.2);
 	display: table;
 	height: 50px;
 	margin: -25px auto 0;
