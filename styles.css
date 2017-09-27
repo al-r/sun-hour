@@ -121,6 +121,17 @@ body {
 	text-align: center;
 }
 
+#weather {
+	display: block;
+	font-size: 14px;
+}
+
+#temperature,
+#label {
+	display: inline-block;
+	font-size: 14px;
+}
+
 #sun-path,
 #moon-path {
 	border: 1px dashed #fff;
@@ -148,6 +159,7 @@ body {
 	display: table;
 	height: 70px;
 	margin: -35px auto 0;
+	position: relative;
 	width: 70px;
 }
 
@@ -158,11 +170,12 @@ body {
 }
 
 #moon {
-	background-color: #fff;
+	background-color: #CAD058;
 	border-radius: 50px;
 	display: table;
 	height: 50px;
 	margin: -25px auto 0;
+	position: relative;
 	width: 50px;
 }
 
@@ -180,7 +193,215 @@ body {
 	z-index: 100;
 }
 
+/* ***** Weather ***** */
+.weather-container {
+	position: relative;
+	-webkit-animation: sway 1s ease-in infinite alternate;
+	animation: sway 1s ease-in infinite alternate;
+}
+
+.cloud-top {
+	background-color: #FFF;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	height: 20px;
+	position: absolute;
+	top: 0;
+	left: -12%;
+	width: 20px;
+}
+
+.cloud-bottom {
+	background-color: #FFF;
+	-webkit-border-radius: 20px;
+	border-radius: 20px;
+	height: 20px;
+	position: absolute;
+	top: 10px;
+	left: -25%;
+	width: 40px;
+}
+
+.drop1,
+.drop2,
+.drop3 {
+	border: none;
+	border-left: 2px dashed #285895;
+	height: 10px;
+	position: absolute;
+	-webkit-transform: rotate(20deg);
+	-moz-transform: rotate(20deg);
+	transform: rotate(20deg);
+}
+
+.drop1 {
+	top: 30px;
+	left: -20%;
+}
+
+.drop2 {
+	top: 35px;
+	left: 0;
+}
+
+.drop3 {
+	top: 30px;
+	left: 15%;
+}
+
+.hot .cloud-top,
+.hot .cloud-bottom,
+.hot .drop1,
+.hot .drop2,
+.hot .drop3,
+.cold .cloud-top,
+.cold .cloud-bottom,
+.cold .drop1,
+.cold .drop2,
+.cold .drop3,
+.sunny .cloud-top,
+.sunny .cloud-bottom,
+.sunny .drop1,
+.sunny .drop2,
+.sunny .drop3,
+div[class*="clear"] .cloud-top,
+div[class*="clear"] .cloud-bottom,
+div[class*="clear"] .drop1,
+div[class*="clear"] .drop2,
+div[class*="clear"] .drop3,
+div[class*="fair"] .cloud-top,
+div[class*="fair"] .cloud-bottom,
+div[class*="fair"] .drop1,
+div[class*="fair"] .drop2,
+div[class*="fair"] .drop3,
+div[class*="cloudy"] .drop1,
+div[class*="cloudy"] .drop2,
+div[class*="cloudy"] .drop3,
+.dust .drop1,
+.dust .drop2,
+.dust .drop3,
+.haze .drop1,
+.haze .drop2,
+.haze .drop3,
+.foggy .drop1,
+.foggy .drop2,
+.foggy .drop3,
+.smoky .drop1,
+.smoky .drop2,
+.smoky .drop3,
+div[class*="drizzle"] .cloud-top,
+div[class*="drizzle"] .cloud-bottom,
+div[class*="storm"] .drop3 {
+	opacity: 0;
+}
+
+div[class*="cloudy"] .cloud-top,
+div[class*="cloudy"] .cloud-bottom,
+div[class*="rain"] .cloud-top,
+div[class*="rain"] .cloud-bottom,
+div[class*="rain"] .drop1,
+div[class*="rain"] .drop2,
+div[class*="rain"] .drop3,
+div[class*="showers"] .cloud-top,
+div[class*="showers"] .cloud-bottom,
+div[class*="showers"] .drop1,
+div[class*="showers"] .drop2,
+div[class*="showers"] .drop3,
+div[class*="hail"] .cloud-top,
+div[class*="hail"] .cloud-bottom,
+div[class*="hail"] .drop1,
+div[class*="hail"] .drop2,
+div[class*="hail"] .drop3,
+div[class*="sleet"] .cloud-top,
+div[class*="sleet"] .cloud-bottom,
+div[class*="sleet"] .drop1,
+div[class*="sleet"] .drop2,
+div[class*="sleet"] .drop3,
+div[class*="drizzle"] .drop1,
+div[class*="drizzle"] .drop2,
+div[class*="drizzle"] .drop3,
+div[class*="snow"] .cloud-top,
+div[class*="snow"] .cloud-bottom,
+div[class*="snow"] .drop1,
+div[class*="snow"] .drop2,
+div[class*="snow"] .drop3,
+div[class*="storm"] .cloud-top,
+div[class*="storm"] .cloud-bottom,
+div[class*="storm"] .drop1,
+div[class*="storm"] .drop2 {
+	opacity: 1;
+}
+
+.mostly-cloudy .cloud-top,
+.mostly-cloudy .cloud-bottom {
+	background-color: #808080 !important;
+}
+
+.dust .cloud-top,
+.dust .cloud-bottom,
+.haze .cloud-top,
+.haze .cloud-bottom,
+.foggy .cloud-top,
+.foggy .cloud-bottom,
+.smoky .cloud-top,
+.smoky .cloud-bottom {
+	-webkit-filter: blur(10px);
+    filter: blur(10px);
+    width: 40px;
+	opacity: 0.6;
+}
+
+div[class*="hail"] .cloud-top,
+div[class*="hail"] .cloud-bottom,
+div[class*="rain"] .cloud-top,
+div[class*="rain"] .cloud-bottom {
+	background-color: #808080 !important;
+}
+
+div[class*="snow"] .drop1,
+div[class*="snow"] .drop2,
+div[class*="snow"] .drop3  {
+	border-left: 2px dotted #FFF;
+}
+
+div[class*="storm"] .drop1,
+div[class*="storm"] .drop2 {
+	background-color: transparent;
+	border: none;
+	left: -15%;
+	width: 3px;
+}
+
+div[class*="storm"] .drop1 {
+	border-bottom: 2px solid yellow;
+	border-left: 5px solid yellow;
+}
+
+div[class*="storm"] .drop2 {
+	border-top: 2px solid yellow;
+	border-right: 5px solid yellow;
+	top: 40px;
+}
+
+.hot {
+	background-color: #ff9a00;
+}
+
+.cold {
+	background-color: #80FFCC;
+}
+
 /* *** All Animations *** */
+/*Weather*/
+@keyframes sway {
+	from {
+		margin-top: 5px;
+	}
+	to {
+		margin-top: 0;
+	}
+}
+
 /*Stars*/
 @keyframes shiningl {
 	from {

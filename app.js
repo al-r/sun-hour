@@ -39,11 +39,6 @@ var sunrise = convertTo24(data.astronomy.sunrise),
 	moonrise = sunset - 1,
 	moonset = sunrise + 1;
 
-console.log('sunrise', sunrise);
-console.log('moonset', moonset);
-console.log('sunset', sunset);
-console.log('moonrise', moonrise);
-
 function clock(){
 	var hrs,
 		mins,
@@ -73,6 +68,8 @@ function clock(){
 			sunPosition(hrs);
 			moonPosition(hrs);
 			nightSky(hrs);
+			weather();
+			convertToCelcius(); 
 		}
 	}, 1000);
 };
@@ -179,6 +176,26 @@ function nightSky(timeNow){
 			}
 		}
 	}
+};
+
+function weather() {
+	var weatherStr = data.item.condition.text,
+		weatherClass = weatherStr.toLowerCase().split(' ').join('-');
+
+	var sunWeather = document.getElementById('sun'),
+		moonWeather = document.getElementById('moon');
+
+	sunWeather.className += weatherClass;
+	moonWeather.className += weatherClass;
+
+	document.getElementById('label').innerHTML += weatherStr;
+};
+
+function convertToCelcius(){
+	var farenheit = data.item.condition.temp;
+		celcius = Math.round((parseInt(farenheit) - 32) * (5 / 9));
+
+	document.getElementById('temperature').innerHTML += celcius + 'C°';
 };
 
 window.addEventListener('load', function(){
