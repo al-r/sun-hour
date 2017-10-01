@@ -7,7 +7,7 @@ body {
 	background-color: #32B3BB;
 	color: #fff;
 	font-family: 'Nunito', Helvetica, sans-serif;
-	font-size: 14px;
+	font-size: 20px;
 	-webkit-transition: background-color 10s;
 	-moz-transition: background-color 10s;
 	transition: background-color 10s;
@@ -109,6 +109,16 @@ body {
 	position: relative;
 }
 
+#chronometer.compact {
+	position: fixed;
+	margin: 0;
+	-webkit-transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	bottom: 100px;
+	left: 50%;
+}
+
 #time {
 	display: block;
 	font-size: 28px;
@@ -117,28 +127,26 @@ body {
 
 #city-name {
 	display: block;
-	font-size: 20px;
+	margin: 0 0 20px 0;
 	text-align: center;
 }
 
 #weather {
 	display: block;
-	font-size: 14px;
 }
 
 #temperature,
 #label {
 	display: inline-block;
-	font-size: 14px;
 }
 
 #sun-path,
 #moon-path {
 	border: 1px dashed #fff;
 	position: fixed;
-	-webkit-transform: translate(-50%, -50%) rotate(-90deg);
-	-moz-transform: translate(-50%, -50%) rotate(-90deg);
-	transform: translate(-50%, -50%) rotate(-90deg);
+	-webkit-transform: translate(-50%, -50%) rotate(-180deg);
+	-moz-transform: translate(-50%, -50%) rotate(-180deg);
+	transform: translate(-50%, -50%) rotate(-180deg);
 	top: 100%;
 	left: 50%;
 	z-index: 100;
@@ -171,10 +179,10 @@ body {
 
 #moon {
 	background-color: #CAD058;
-	border-radius: 50px;
 	-webkit-box-shadow: 0 0 10px 10px rgba(202,208,88, 0.2);
 	-moz-box-shadow: 0 0 10px 10px rgba(202,208,88, 0.2);
 	box-shadow: 0 0 10px 10px rgba(202,208,88, 0.2);
+	border-radius: 50px;
 	display: table;
 	height: 50px;
 	margin: -25px auto 0;
@@ -193,7 +201,7 @@ body {
 	top: 100%;
 	left: 50%;
 	width: 200px;
-	z-index: 100;
+	z-index: 1000;
 }
 
 /* ***** Weather ***** */
@@ -201,6 +209,11 @@ body {
 	position: relative;
 	-webkit-animation: sway 1s ease-in infinite alternate;
 	animation: sway 1s ease-in infinite alternate;
+}
+
+#weather-moon {
+	-webkit-animation-delay: 500ms;
+	animation-delay: 500ms;
 }
 
 .cloud-top {
@@ -250,6 +263,11 @@ body {
 .drop3 {
 	top: 30px;
 	left: 15%;
+}
+
+.wind,
+.blustery {
+
 }
 
 .hot .cloud-top,

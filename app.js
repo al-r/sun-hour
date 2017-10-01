@@ -1,18 +1,20 @@
 // Get data from Yahoo Weather
-function getData(url){
+function getByUrl(url){
     var Httpreq = new XMLHttpRequest();
     Httpreq.open("GET",url,false);
     Httpreq.send(null);
-    return Httpreq.responseText;          
-}
+    return Httpreq.responseText;      
+};
 
-var jsonObj = JSON.parse(getData('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22London%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback='));
+var jsonObj = JSON.parse(getByUrl('https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20in%20(select%20woeid%20from%20geo.places(1)%20where%20text%3D%22London%22)&format=json&diagnostics=true&env=store%3A%2F%2Fdatatables.org%2Falltableswithkeys&callback='));
 var data = jsonObj.query.results.channel;
 console.log("data", data);
 
 
-// Positioning of sun and moon
-var sunPath = document.getElementById('sun-path'),
+// Div of sun and moon
+var sunDiv = document.getElementById('sun'),
+	sunPath = document.getElementById('sun-path'),
+	moonDiv = document.getElementById('moon'),
 	moonPath = document.getElementById('moon-path'),
 	earth = document.getElementById('earth');
 
@@ -90,6 +92,13 @@ function sunPosition(timeNow){
 	sunPath.style.webkitTransform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
 	sunPath.style.mozTransform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
 	sunPath.style.transform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
+
+	//Ajust Sun
+	var rotation = position*(-1);
+
+	sunDiv.style.webkitTransform = 'rotate(' + rotation + 'deg)';
+	sunDiv.style.mozTransform = 'rotate(' + rotation + 'deg)';
+	sunDiv.style.transform = 'rotate(' + rotation + 'deg)';
 };
 
 // Night time
@@ -113,6 +122,13 @@ function moonPosition(timeNow){
 	moonPath.style.webkitTransform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
 	moonPath.style.mozTransform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
 	moonPath.style.transform = 'translate(-50%, -50%) rotate(' + position + 'deg)';
+
+	//Ajust Moon
+	var rotation = position*(-1);
+
+	moonDiv.style.webkitTransform = 'rotate(' + rotation + 'deg)';
+	moonDiv.style.mozTransform = 'rotate(' + rotation + 'deg)';
+	moonDiv.style.transform = 'rotate(' + rotation + 'deg)';
 };
 
 function displayStars(){
@@ -188,16 +204,16 @@ function weather() {
 	sunWeather.className += weatherClass;
 	moonWeather.className += weatherClass;
 
-	document.getElementById('label').innerHTML += weatherStr;
+	document.getElementById('label').innerHTML = weatherStr;
 };
 
 function convertToCelcius(){
 	var farenheit = data.item.condition.temp;
 		celcius = Math.round((parseInt(farenheit) - 32) * (5 / 9));
 
-	document.getElementById('temperature').innerHTML += celcius + 'C°';
-};
+	document.getElementById('temperature').innerHTML = celcius + 'C°';
+}
 
 window.addEventListener('load', function(){
-	clock();
+	clock();	
 });
